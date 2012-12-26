@@ -1,6 +1,6 @@
 (ns rooster-shipment-tracker.core-test
   (:use clojure.test
-        rooster_shipment_tracker.core))
+        rooster-shipment-tracker.core))
 
 (deftest a-test
   (testing "FIXME, I fail."
