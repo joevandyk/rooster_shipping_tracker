@@ -1,14 +1,17 @@
 (ns rooster-shipment-tracker.core
   (:require [clj-http.client :as http])
+  (:require [clojure.data.xml :as xml])
   (:gen-class))
 
-; Given a UPS number, track it.
-;
-
 (defn fetch [url] 
-  (:headers (http/get url)))
+  (:body (http/get url)))
+
+(defn parse [xml] 
+  (xml/parse (java.io.StringReader. xml)))
 
 (defn -main
-  "I don't do a whole lot ... yet."
-  [url & args]
-  (println (fetch url)))
+  "Given a URL, downloads and parses it."
+  [url]
+  (println (parse (fetch url)))
+  ; same as
+  (-> url fetch parse println))
